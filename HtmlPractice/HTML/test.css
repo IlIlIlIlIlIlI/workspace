@@ -1,0 +1,10 @@
+div {
+    width: 550px;
+    height: 550px;
+    border-radius: 45%;
+    background-color: turquoise;
+    margin:100px auto;
+    text-align: center;
+    animation-name: right;
+
+}
