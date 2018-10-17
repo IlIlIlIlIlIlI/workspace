@@ -1,0 +1,5 @@
+三角形的三边长为：273piexl  273piexl  273piexl，面积为：32272piexl^2，周长为：819piexl
+三角形的三边长为：274piexl  274piexl  274piexl，面积为：32699piexl^2，周长为：824piexl
+三角形的三边长为：533piexl  533piexl  533piexl，面积为：123364piexl^2，周长为：1601piexl
+三角形的三边长为：187piexl  187piexl  187piexl，面积为：15282piexl^2，周长为：563piexl
+三角形的三边长为：167piexl  167piexl  167piexl，面积为：12192piexl^2，周长为：503piexl

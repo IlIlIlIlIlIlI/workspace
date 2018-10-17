@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/JS/jquery.min.js"></script>
+</head>
+<body>
+    <input type="text" id="tName"/>
+    <input type="text" id="tIni"/>
+    <input type="text" id="des"/>
+    <input type="text" id="dNum"/>
+    <a href="javascript:;" id="submit">提交</a>
+</body>
+<script type="text/javascript">
+    $("#submit").on("click",function () {
+        $.ajax({
+            type:"post",
+            url:"/leave/leaveSubmit",
+            data:{
+                "teaName":$("#tName").val(),
+                "teaInsti":$("#tIni").val(),
+                "describe":$("#des").val(),
+                "dNum":$("#dNum").val()
+            },
+            success:function (data) {
+                alert("请求已提交");
+            },
+            error:function () {
+                
+            }
+        });
+    });
+</script>
+</html>

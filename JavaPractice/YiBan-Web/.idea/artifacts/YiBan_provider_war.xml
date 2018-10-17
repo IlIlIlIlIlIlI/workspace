@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="YiBan-provider:war">
+    <output-path>$PROJECT_DIR$/../YiBan-Web/YiBan-provider/target</output-path>
+    <root id="archive" name="YiBan-provider.war">
+      <element id="artifact" artifact-name="YiBan-provider:war exploded" />
+    </root>
+  </artifact>
+</component>

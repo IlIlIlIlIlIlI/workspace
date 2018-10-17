@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/Heart/DrawHeart.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cbs/Draw.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cbs/DrawListener.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cbs/DrawPoint.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/com/cbs/MyPaint.java" charset="GBK" />
+  </component>
+</project>

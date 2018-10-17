@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript">
+            var a = new Array()
+        a[0]  = new followingLAYER('flwLay0',10,20,100,'<font size="1">バ</font>') 
+        a[1]  = new followingLAYER('flwLay1',40,20,200,'<font size="1">レ</font>') 
+        a[2]  = new followingLAYER('flwLay2',70,20,300,'<font size="1">ン</font>') 
+        a[3]  = new followingLAYER('flwLay3',100,20,400,'<font size="1">タ</font>') 
+        a[4]  = new followingLAYER('flwLay4',130,20,500,'<font size="1">イ</font>') 
+        a[5]  = new followingLAYER('flwLay5',160,20,600,'<font size="1">ン</font>')
+        a[6]  = new followingLAYER('flwLay6',190,20,700,'<font size="1">ネ</font>')
+        a[7]  = new followingLAYER('flwLay7',220,20,800,'<font size="1">ッ</font>')
+        a[8]  = new followingLAYER('flwLay8',250,20,900,'<font size="1">ト</font>')
+          document.onmousemove = dofollow
+          if(document.layers)document.captureEvents(Event.MOUSEMOVE)
+          if(window.opera){
+            op_dmydoc ='<div id="dmy" style="position:absolute;z-index:0'
+                      +'                     left:100%;top:100%"></div> '
+            document.write(op_dmydoc)
+          }
+          function dofollow(e){
+            for(var i=0 ; i < a.length ; i++ )
+              setTimeout("a["+i+"].moveLAYER(a["+i+"].layName,"
+                 +(getMouseX(e)+a[i].ofx)+","+(getMouseY(e)+a[i].ofy)+")"
+                 ,a[i].delay)
+          }
+          function followingLAYER(layName,ofx,ofy,delay,html){
+            this.layName = layName   
+            this.ofx     = ofx       
+            this.ofy     = ofy       
+            this.delay   = delay     
+            if(document.layers)
+              this.div='<layer name="'+layName+'" left="-100" top="-100">\n'
+                      + html + '</layer>\n'
+            else
+              this.div='<div id="'+layName+'"\n'
+                      +'style="position:absolute;left:-100px;top:-100px">\n'
+                      + html + '</div>\n'
+            document.write(this.div)
+          }
+          followingLAYER.prototype.moveLAYER = moveLAYER 
+          function moveLAYER(layName,x,y){
+            if(document.getElementById){      
+                document.getElementById(layName).style.left = x
+                document.getElementById(layName).style.top  = y
+            } else if(document.all){          
+                document.all(layName).style.pixelLeft = x
+                document.all(layName).style.pixelTop  = y
+            } else if(document.layers)         
+                document.layers[layName].moveTo(x,y)
+          }
+          function getMouseX(e){
+            if(window.opera) return e.clientX
+            else if(document.all)   
+                return document.body.scrollLeft+event.clientX
+            else if(document.layers||document.getElementById)
+                return e.pageX
+          }
+          function getMouseY(e){
+            if(window.opera)  return e.clientY
+            else if(document.all)   
+                return document.body.scrollTop+event.clientY
+            else if(document.layers||document.getElementById)
+                return e.pageY
+          }
+            </script>
+    <style>
+            * {
+            padding：0;
+        
+            margin：0;
+        }
+        html, body {
+            height: 100%;
+        }
+        #numclock{
+            width : 100px;
+            height: 50px;
+            margin:50px auto;
+
+        }
+        #h1{
+            width:340px;
+            height:100px;
+            margin:50px auto;
+                        
+        }
+        #warp{
+            width:230px;
+            height:230px;
+            margin:160px auto;
+
+        }
+        #border{
+            width:200px;
+            height:200px;
+            border-radius:115px;
+            border:0px solid black;
+            background:#9c9;
+            position:relative;
+            
+        }
+        #number div{
+            width:190px;
+            height:20px;
+            position:absolute;
+            left:10px;
+            top:90px;
+        }
+        #number span{
+            display:block;
+            width:20px;
+            height:20px;
+        }
+        .pointer{
+            position:absolute;
+            bottom:90px;
+            transform-origin:50% 90%;
+            -webkit-transform-origin:50% 90%;
+        }
+        #hour{
+            height:50px;
+            left:98px;
+            outline-style: dotted;
+            outline-color: black;
+        }
+        #minute{
+            height:65px;
+            left:99px;
+            outline-style: dotted;
+            outline-color: blue;
+        }
+        #second{
+            height:80px;
+            left:100px;
+            outline-style: dotted;
+            outline-color: red;
+        }
+            </style>
+</head>
+<body>
+
+    
+        <div id="numclock"></div>
+        
+        <div id="warp">
+                <!-- 先把时钟的结构写出来 -->
+                <div id="border">
+                    <div id="number">
+                        <!-- 因为是默认是显示成一行的数字，故从9先开始 -->
+                        <div><span>9</span></div>
+                        <div><span>10</span></div>
+                        <div><span>11</span></div>
+                        <div><span>12</span></div>
+                        <div><span>1</span></div>
+                        <div><span>2</span></div>
+                        <div><span>3</span></div>
+                        <div><span>4</span></div>
+                        <div><span>5</span></div>
+                        <div><span>6</span></div>
+                        <div><span>7</span></div>
+                        <div><span>8</span></div>
+                    </div>
+                    <div id="hour" class="pointer"></div>
+                    <div id="minute" class="pointer"></div>
+                    <div id="second" class="pointer"></div>
+                </div>
+        </div>   
+        <script>
+        var Num = document.getElementById("number");
+        var Div = Num.getElementsByTagName("div");
+        var Span = Num.getElementsByTagName("span");
+
+        //这是用来将div旋转的
+        for(var i=0;i<Div.length;i++){
+            Div[i].style.WebkitTransform="rotate(" + i * 30 + "deg)";
+        }	
+                
+        //这是将div中的span，也就是数字旋转到端正的位置
+        for(var j=0;j<Span.length;j++){
+            Span[j].style.WebkitTransform="rotate("+ j * -30 + "deg)";
+        }
+
+        function PointerRotate(){
+            var Hour = document.getElementById("hour");
+            var Minute = document.getElementById("minute");
+            var Second = document.getElementById("second");
+
+            var nowTime = new Date();
+            var nowHour = nowTime.getHours();
+            var nowMinute = nowTime.getMinutes();
+            var nowSecond = nowTime.getSeconds();
+
+            var restHourDeg = (nowMinute/60)*30;
+            var restMinuteDeg = (nowSecond/60)*6;
+
+            Hour.style.WebkitTransform = "rotate(" + (nowHour * 30 + restHourDeg) + "deg)";
+            Minute.style.WebkitTransform = "rotate(" + (nowMinute * 6 + restMinuteDeg) + "deg)";
+            Second.style.WebkitTransform = "rotate(" + (nowSecond * 6 ) + "deg)";
+        }
+        PointerRotate();
+        setInterval(PointerRotate,1000);	
+        
+        //setInterval(alert("一分钟过去了~"),60000);
+        </script>
+        <script>
+        function numClock(){
+            var today = new Date();
+            var ji = today.getHours();
+            var fun = today.getMinutes();
+            var kan = today.getSeconds();
+            fun = checkClock(fun);
+            kan = checkClock(kan);
+            document.getElementById("numclock").innerHTML = ji + ":" + fun + ":" + kan;
+            
+        }
+        function checkClock(i){
+            if(i<10){
+                i = "0" + i;
+            }
+            return i;
+        }
+        setInterval(numClock,1000);
+        </script>
+
+
+</body>
+</html>

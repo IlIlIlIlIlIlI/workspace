@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/JS/jquery.min.js"></script>
+</head>
+<body>
+    <div>
+        <P>学生 信息</P>
+        学号：#(stu.StudentID)<br />
+        姓名：#(stu.StudentName)<br />
+        电话：#(stu.PhoneNumber)<br />
+        学院：#(stu.InstitudeName)<br />
+        专业：#(stu.ProfesionalName)<br />
+        状态：#(stu.Status)<br />
+    </div>
+
+
+    <div>
+        <p>预约历史</p>
+        #for(r:res)
+            #(for.index)
+            老师：#(r.TeacherID)<br />
+            缘由：#(r.Description)<br />
+            开始时间：#(r.BeginTime)<br />
+            结束时间：#(r.EndTime)<br />
+            状态：#(r.Status)<br />
+        #end
+    </div>
+    <a href="/reserve/reserveRequest.html">预约</a>
+</body>
+</html>

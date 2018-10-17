@@ -1,0 +1,33 @@
+    .nav li{
+        float: left;
+        list-style-type:none;
+    }
+    .nav li a{
+        color:#000000;
+        text-decoration:none;
+        padding:0px;
+        display:block;
+        width:125px;
+        height:25px;
+        text-align:center;
+        background-color:#09f0dc;
+        margin-left:5px;
+
+    }
+    .nav li a:hover{
+        background-color:navy;
+        color:greenyellow;
+    }
+    .nav{
+        height:26px;
+ 
+    }
+    .nav li a .pyq{
+        background-color: blue;
+        color: blue;
+    }
+.nav li a .title{
+
+    color: brown;
+
+}

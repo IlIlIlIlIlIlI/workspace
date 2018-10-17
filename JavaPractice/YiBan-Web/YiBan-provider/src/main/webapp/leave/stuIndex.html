@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <P>学生 信息</P>
+        学号：#(student.StudentID)<br />
+        姓名：#(student.StudentName)<br />
+        电话：#(student.PhoneNumber)<br />
+        学院：#(student.InstitudeName)<br />
+        专业：#(student.ProfesionalName)<br />
+        状态：#(student.Status)<br />
+    </div>
+
+    #if(student.Status == 1 || student.Status == 2)
+        <a href="javascript:;">请假</a>
+    #else
+        <a href="/leave/leaveRequest.html">请假</a>
+    #end
+
+
+    <div>
+        <p>请假历史</p>
+        #for(le:leaves)
+            #(for.index)
+            领导：#(le.LeaderID)<br />
+            老师：#(le.TeacherID)<br />
+            缘由：#(le.Description)<br />
+            开始时间：#(le.BeginTime)<br />
+            结束时间：#(le.EndTime)<br />
+            状态：#(le.Status)<br />
+        #end
+    </div>
+</body>
+</html>

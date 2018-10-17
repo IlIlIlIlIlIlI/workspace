@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="/JS/jquery.min.js"></script>
+</head>
+<body>
+<div>
+    <P>老师 信息</P>
+    编号：#(tea.TeacherID)<br />
+    姓名：#(tea.TName)<br />
+    电话：#(tea.PhoneNumber)<br />
+    学院：#(tea.InstitudeName)<br />
+    专业：#(tea.ProfesionalName)<br />
+</div>
+
+<div>
+    <p>准假历史</p>
+    #for(le:lea)
+        #(for.index)
+        id：#(le.LeaveID)
+        学号：#(le.StudentID)<br />
+        领导：#(le.LeaderID)<br />
+        老师：#(le.TeacherID)<br />
+        缘由：#(le.Description)<br />
+        开始时间：#(le.BeginTime)<br />
+        结束时间：#(le.EndTime)<br />
+        状态：#(le.Status)<br />
+        #if(le.Status == 2)
+            <button onclick="confirm(this)" value="#(le.LeaveID)">准假</button>
+            <button onclick="cancel(this)" value="#(le.LeaveID)">不准</button>
+        #end
+    #end
+</div>
+</body>
+<script type="text/javascript">
+    function confirm(_this) {
+        var leaId = _this.value;
+        $.ajax({
+            type:"post",
+            url:"/leave/leaveIdentity",
+            data:{
+                "leaveID":leaId
+            },
+            success:function (data) {
+                if("ok" === data.result){
+                    alert("准假成功");
+
+                }
+                else{
+                    alert("已过期");
+                }
+            },
+            error:function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(textStatus);
+            }
+        });
+    }
+    function cancel(_this) {
+        var leaId = _this.value;
+        $.ajax({
+            type:"post",
+            url:"/leave/leaveCancel",
+            data:{
+                "leaveID":leaId
+            },
+            success:function (data) {
+                if("ok" === data.result){
+                    alert("成功");
+
+                }
+                else{
+                    alert("已过期");
+                }
+            },
+            error:function () {
+
+            }
+        });
+    }
+</script>
+</html>
