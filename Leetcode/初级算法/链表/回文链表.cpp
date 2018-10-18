@@ -68,7 +68,7 @@ static const auto speedUp = []()
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-class Solution {
+class Solution {        //快慢指针
 public:
     bool isPalindrome(ListNode* head) {
         stack<int> s;
