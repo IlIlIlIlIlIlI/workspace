@@ -8,7 +8,16 @@ int	a[MAXN]={0};
 //GCD - Greatest Commnond Divider最大公约数 - Algorithm 1: 
 //try all integers from n down until finding one that divides m and n evenly.
 int gcdGuess(int m, int n, int g) {
-    
+	if(!m) return n;
+	if(!n) return m;
+    int least = (m < n) ? m : n;
+	for(int i = least; i > 1; i--)
+	{
+		if((m % i == 0) && (n % i == 0))
+		{
+			return i;
+		}
+	}
   return 1;
 }
 
@@ -23,9 +32,14 @@ void main4gcd1()
 //GCD Algorithm 2: Euclid's Algorithm
 //If m > n, the gcd of m and n is the same as the gcd of n and m % n.
 int gcd2(int m, int n) {
-
-
-  return 1;
+	if(!n)
+	{
+		return m;
+	}
+	else
+	{
+		return gcd2(n, m % n);
+	}
 }
 
 void main4gcd2()
@@ -39,9 +53,14 @@ void main4gcd2()
 //GCD Algorithm 3: Dijkstra's Algorithm
 //The idea: If m>n, GCD(m,n) is the same as GCD(m-n,n).
 int gcd3(int m, int n) {
-  int gcd=1;
-
-  return gcd;
+  if(m == n)
+  {
+	  return m;
+  }
+  else
+  {
+	  return m > n ? gcd3(m - n, n) : gcd3(m, n - m);
+  }
 }
 
 void main4gcd3()
@@ -72,18 +91,28 @@ void KeyInput(int num[], int &n, int &max)
 //n代表num[]的长度(即包含几个数)，max是其中的最大值
 int GCDs(int num[], int n, int max)
 {
-	int gcd = 1;
-
+	int gcd = num[0];
+	for(int i = 1; i < n; i++)
+	{
+		gcd = gcd3(gcd, num[i]);
+	}
 	return gcd;
 }
 
 //LCM - Lowest/Least Common Multiple最小公倍数
 //计算一组数的LCM
 //n代表num[]的长度(即包含几个数)，max是其中的最大值
+int LCM(int m, int n)
+{
+	return m * n / gcd3(m, n);
+}
 int LCMs(int num[], int n, int max)
 {
-	int lcm = 1;
-	
+	int lcm = num[0];
+	for(int i = 1; i < n; i++)
+	{
+		lcm = LCM(lcm, num[i]);
+	}
 	return lcm;
 }
 
