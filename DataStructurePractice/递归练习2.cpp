@@ -89,6 +89,19 @@ void KeyInput(int num[], int &n, int &max)
 
 ////递归地计算一组数的GCD
 //n代表num[]的长度(即包含几个数)，max是其中的最大值
+/*
+int GCDs(int num[], int n, int max)
+{
+	for(int i = 0; i < n; i++)
+	{
+		while(num[i] % max)
+		{
+			max--;
+		}
+	}
+	return max;
+}
+*/
 int GCDs(int num[], int n, int max)
 {
 	int gcd = num[0];
@@ -102,6 +115,20 @@ int GCDs(int num[], int n, int max)
 //LCM - Lowest/Least Common Multiple最小公倍数
 //计算一组数的LCM
 //n代表num[]的长度(即包含几个数)，max是其中的最大值
+/*
+//将max对整个数组取余，直到都余0
+int LCMs(int num[], int n, int max)
+{
+	for(int i = 0; i < n; i++)
+	{
+		while(max % num[i])
+		{
+			max++;
+		}
+	}
+	return max;
+}
+*/
 int LCM(int m, int n)
 {
 	return m * n / gcd3(m, n);
