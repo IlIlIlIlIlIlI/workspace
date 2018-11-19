@@ -1,0 +1,149 @@
+
+body {
+    background: rgb(255, 0, 200);
+}
+#baymax {
+
+    margin: 0 auto;
+    height: 600px;
+    overflow: hidden;
+}
+#head {
+    height: 64px;
+    width: 100px;
+    border-radius: 50%;
+    background: #fff;
+    margin: 0 auto;
+    position: relative;
+    border-bottom: 5px solid #e0e0e0;
+}
+#eye, #eye2 {
+    width: 10px;
+    height: 12px;
+    border-radius: 50%;
+    background: #000;
+    position: relative;
+    top: 29px;
+    left: 27px;
+    transform: rotate(8deg);
+}
+#eye2 {
+    left: 65px;
+    top: 17px;
+    transform: rotate(-8deg);
+}
+#mouth {
+    width: 36px;
+    height: 1.5px;
+    background: #000;
+    position: relative;
+    left: 30px;
+    top: 10px;
+}
+
+#torso, #belly {
+    width: 180px;
+    height: 200px;
+    background: #fff;
+    border-radius: 50%;
+    margin: 0 auto;
+    margin-top: -20px;
+    border: 5px solid #e0e0e0;
+    z-index: 1;
+}
+#heart{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #fff;
+    position: relative;
+    right: -115px;
+    top: 45px;
+    box-shadow: 2px 3px 2px #ccc inset;
+    border: 1px solid #eee;
+    z-index: 10;
+}
+
+#belly {
+    width: 250px;
+    height: 280px;
+    margin-top: -150px;
+    border-top: none;
+    z-index: 5;
+}
+#cover {
+    width: 190px;
+    height: 150px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 50%;
+    top: -20px;
+    position: relative;
+}
+
+#left-arm, #right-arm {
+    width: 100px;
+    height: 250px;        
+    background: #fff;
+    position: relative;
+    top: -330px;
+    border-radius: 50%;
+    margin: 0 auto;
+    left: -100px;
+    transform: rotate(20deg);
+    z-index: -1;
+}
+#right-arm {
+    left: 100px;
+    top: -578px;
+    transform: rotate(-20deg);
+}
+
+#l-bigfinger, #r-bigfinger {
+    width: 15px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    top: 235px;
+    left: 35px;
+    transform: rotate(-100deg);
+}
+#r-bigfinger {
+    left: 45px;
+    transform: rotate(100deg);
+}
+
+#l-smallfinger, #r-smallfinger{
+    width: 10px;
+    height: 30px;
+    background: #fff;
+    border-radius: 50%;
+    position: relative;
+    top: 190px;
+    left: 53px;
+    transform: rotate(-70deg);
+}
+#r-smallfinger {
+    left: 33px;
+    transform: rotate(70deg);
+}
+
+#left-leg, #right-leg {
+    width: 90px;
+    height: 170px;
+    border-radius: 40% 30% 10px 45%;
+    background: #fff;
+    position: relative;
+    left: -45px;
+    top: -610px;
+    margin: 0 auto;
+    z-index: -2;
+    transform: rotate(-1deg);
+}
+#right-leg {
+    left: 50px;
+    top: -780px;
+    border-radius: 30% 40% 45% 10px;
+    transform: rotate(1deg);
+}
