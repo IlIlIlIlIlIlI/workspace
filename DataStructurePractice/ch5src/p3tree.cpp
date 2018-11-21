@@ -35,7 +35,9 @@ void biTree()
 	preOrder(root); //非递归地先序遍历
 	level(root);	//层次遍历
 	DisplayBiTree(root);
+	cout << '\n';
 	DisplayBiTreeAsList(root);
+	cout << '\n';
 	DisplayBiTreeAsNested(root);
 	getchar();
 }

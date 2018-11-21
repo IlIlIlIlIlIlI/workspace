@@ -62,5 +62,6 @@ void InThreading(BiThrTree p);
 
 void DisplayBiTree(BiTree rt); //类似<二叉树示意图.png>，以树的形态"图形化"显示
 void DisplayBiTreeAsList(BiTree rt); //广义表的形式显示
+void helper(BiTree rt, int tab);	//嵌套的帮助函数
 void DisplayBiTreeAsNested(BiTree rt); //把嵌套完全展开的方式显示
 

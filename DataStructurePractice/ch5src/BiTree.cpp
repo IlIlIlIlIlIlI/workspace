@@ -50,8 +50,8 @@ void preOrder(BiTree rt)
 		else
 		{
 			//3.访问该结点右子树的根，重复步1
-			p = p->rchild;
 			Pop(p);
+			p = p->rchild;
 		}
 	}
 	cout << "\r\n";
@@ -86,6 +86,7 @@ void level(BiTree rt)
 				q.push(tmp->rchild);
 			}
 		}
+		cout << '\n';
 	}
 }
 
@@ -334,17 +335,26 @@ int height(BiTree rt)
 }
 void DisplayBiTree(BiTree rt)
 {
-	//hierachyOf(rt);
+	hierachyOf(rt);
+	
 	/**
 	 * 对于第k层（从上往下数，根节点为第一层）
 	 * 第一个节点距离起始输出位置为2^（h-k）—1
 	 * 节点之间的间隙为2^(h-k+1) —1
 	 */
-	int h = height(rt), level = 0, ff = 1;
+
+	/*
+	int h = height(rt), level = 0, ff = 0;
 	queue<BiTree> q;
 	q.push(rt);
 	while (!q.empty())
 	{
+
+		if(ff)
+		{
+
+		}
+
 		level++;
 		int cnt = q.size(), f = 0;
 
@@ -366,19 +376,33 @@ void DisplayBiTree(BiTree rt)
 				}
 			}
 			BiTree tmp = q.front();
-			cout << tmp->data << " ";
+			if(tmp)
+			{
+				cout << tmp->data;
+			}
 			q.pop();
 			if (tmp->lchild)
 			{
 				q.push(tmp->lchild);
 			}
+			else
+			{
+				BiTree b = (BiTNode *)malloc(sizeof(BiTNode));
+				q.push(b);
+			}
 			if (tmp->rchild)
 			{
 				q.push(tmp->rchild);
 			}
-			cout << '\n';
+			else
+			{
+				BiTree b = (BiTNode *)malloc(sizeof(BiTNode));
+				q.push(b);
+			}
 		}
+		cout << '\n';
 	}
+	*/
 }
 
 /*
@@ -390,16 +414,18 @@ void DisplayBiTreeAsList(BiTree rt)
 	if (rt)
 	{
 		cout << rt->data;
-		;
-		if (rt->lchild && rt->rchild)
+		if (rt->lchild || rt->rchild)
 		{
 			cout << "(";
-			DisplayBiTreeAsList(rt->lchild);
-			if (rt->rchild)
+			if(rt->lchild)
 			{
-				cout << ",";
+				DisplayBiTreeAsList(rt->lchild);
 			}
-			DisplayBiTreeAsList(rt->rchild);
+			cout << ",";
+			if(rt->rchild)
+			{
+				DisplayBiTreeAsList(rt->rchild);
+			}
 			cout << ")";
 		}
 	}
@@ -430,8 +456,12 @@ void helper(BiTree rt, int tab) //先序遍历
 	{
 		cout << rt->data;
 	}
-	helper(rt->lchild, tab + 1);
-	helper(rt->lchild, tab + 1);
+	cout << '\n';
+	if(rt)
+	{		
+		helper(rt->lchild, tab + 1);
+		helper(rt->rchild, tab + 1);
+	}
 }
 void DisplayBiTreeAsNested(BiTree rt)
 {
