@@ -1,0 +1,23 @@
+在提供代码的基础上，                                                                       !!!!!!! 写在函数定义处 !!!!!!!!
+一、实现TBD任务4个，包括：
+void preOrder(BiTree rt);	//*TBD1* 非递归的先序遍历
+void level(BiTree rt);	//*TBD2* 层次遍历
+Status InOrderThreading(BiThrTree &Thrt, BiThrTree T); //*TBD3* 中序遍历二叉树T，将其线索化，Thrt指向头结点
+Status InOrderTraverse_Thr(BiThrTree Thrt); //*TBD4* 中序遍历线索化二叉树，Thrt的左指针指向头结点
+
+二、扩展实现BiTree的三种显示方式：                                                           !!!!!!! 写在BiTree.cpp的最下方 !!!!!!!!
+（1）void DisplayBiTree(BiTree rt)，类似<二叉树示意图.png>，以树的形态"图形化"显示；
+（2）void DisplayBiTreeAsList(BiTree rt)广义表的形式显示，即字符串形式显示，如A(B(C,D(E(,G),F)),)
+（3）void DisplayBiTreeAsNested(BiTree rt)把嵌套完全展开的方式显示，即像编写代码的缩进格式一样，如：
+A
+---B
+------C
+---------
+---------
+------D
+---------E
+------------
+------------G
+---------F
+---
+
