@@ -20,5 +20,5 @@ typedef char *HuffmanCode;
 void select(HuffmanTree *huffmanTree, int n, int *s1, int *s2);
 void createHuffmanTree(HuffmanTree *huffmanTree, float w[], int n);
 void creatHuffmanCode(HuffmanTree *huffmanTree, HuffmanCode *huffmanCode, int n);
-void dataToHuffmanCode(char &Huffman, int data[]);
+void dataToHuffmanCode(char Huffman[], int data[]);
 void HuffmanCodeTodata(char Huffman, int &data);
