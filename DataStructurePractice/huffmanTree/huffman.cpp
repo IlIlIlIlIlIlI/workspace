@@ -167,6 +167,7 @@ void creatHuffmanCode(HuffmanTree *huffmanTree, HuffmanCode *huffmanCode, int n)
 
 	printf("\n");
 }
+
 /*HuffmanTree HT;
 HuffmanCode HC;
 int i, n;
@@ -228,9 +229,9 @@ void dataToHuffmanCode(char Huffman[], int data[])
 	//打印编码序列
 	for (i = 0; i < num; i++)
 	{
-		for(int x = 1; x <= n; x++)
+		for (int x = 1; x <= n; x++)
 		{
-			if(huffmanCode[i] == data[i])
+			if (huffmanCode[i] == data[i])
 			{
 				strcat(Huffman, &huffmanCode[i]);
 				break;
@@ -244,23 +245,22 @@ void HuffmanCodeTodata(char Huffman, int &data)
 	printf("请输入需要读取的文件名：");
 	char fileName[20];
 	int i = 0;
-	while(~scanf("%c",&fileName[i]))
+	while (~scanf("%c", &fileName[i]))
 	{
 		i++;
 	}
 
 	FILE *fp = fopen(fileName, "r");
-	if(!fp)
+	if (!fp)
 	{
 		return;
 	}
 
 	char ch = getc(fp);
 	stack<char> num;
-	stack<stack<char>> nums
-	while(ch != EOF)
+	stack<stack<char>> nums while (ch != EOF)
 	{
-		if(ch != ' ' && ch != EOF)
+		if (ch != ' ' && ch != EOF)
 		{
 			num.push(ch);
 		}
@@ -275,25 +275,81 @@ void HuffmanCodeTodata(char Huffman, int &data)
 
 	i = 0;
 	int sum = 0;
-	while(!nums.empty())
+	while (!nums.empty())
 	{
 		int tmp = 0, ten = 1;
-		while(!nums[i].empty)
+		while (!nums[i].empty)
 		{
-			tmp += ((nums[i].top()-'0') * ten);
+			tmp += ((nums[i].top() - '0') * ten);
 			ten *= 10;
 			nums[i].pop();
 		}
 		ans[tmp]++;
 		sum++;
-	}//全局变量 int ans[1024];
+	} //全局变量 int ans[1024];
 	//sum为数字的总数
-
+	
+	int n = 0;
 	for(i = 0; i < 1024; i++)
 	{
 		if(ans[i])
 		{
-			
+			n++;
+		}
+	}
+
+	//*****************************************
+	//m 为哈�?曼树总共的结点数，n 为叶子结点数
+	int m = 2 * n - 1;
+	//s1 �? s2 为两�?当前结点里，要选取的最小权值的结点
+	int s1;
+	int s2;
+	//标�??
+	// 创建哈夫曼树的结点所需的空间，m+1，代表其�?包含一�?头结�?
+	HuffmanTree *huffmanTree = (HuffmanTree)malloc((m + 1) * sizeof(Node));
+	//1--n号存放叶子结点，初�?�化叶子结点，结构数组来初�?�化每个叶子结点，初始的时候看做一�?�?单个结点的二叉树
+	for (i = 1; i < 1024; i++)
+	{
+		if(ans[i])
+		{				
+			//其中叶子结点的权值是 w【n】数组来保存
+			(*huffmanTree)[i].weight = w[i];
+			//初�?�化叶子结点（单�?结点二叉树）的�?�子和双亲，单个结点，也就是没有孩子和双亲，==0
+			(*huffmanTree)[i].lChild = 0;
+			(*huffmanTree)[i].parent = 0;
+			(*huffmanTree)[i].rChild = 0;
+		}
+	} // end of for
+	//非叶子结点的初�?�化
+	for (i = n + 1; i <= m; i++)
+	{
+		(*huffmanTree)[i].weight = 0;
+		(*huffmanTree)[i].lChild = 0;
+		(*huffmanTree)[i].parent = 0;
+		(*huffmanTree)[i].rChild = 0;
+	}
+
+	printf("\n HuffmanTree: \n");
+	//创建非叶子结点，建哈�?曼树
+	for (i = n + 1; i <= m; i++)
+	{
+		select(HuffmanTree, i - 1, &s1, &s2);
+
+		(*HuffmanTree)[s1].parent = i;
+		(*HuffmanTree)[s2].parent = i;
+		(*HuffmanTree)[i].lChild = s1;
+		(*HuffmanTree)[i].lChild = s2;
+
+		(*HuffmanTree)[i].weight = (*HuffmanTree)[s1].weight + (*HuffmanTree)[s2].weight;
+
+		//printf("%f (%f, %f)\n", (*huffmanTree)[i].weight, (*huffmanTree)[s1].weight, (*huffmanTree)[s2].weight);
+	}
+	//****************************************************
+
+	for (i = 0; i < 1024; i++)
+	{
+		if (ans[i])
+		{
 		}
 	}
 }
@@ -333,7 +389,7 @@ int main()
 		case 2:
 		{
 			printf("\n输入数据�?数为�?");
-			
+
 			scanf("%d", &num);
 
 			printf("\n输入数据为：");
