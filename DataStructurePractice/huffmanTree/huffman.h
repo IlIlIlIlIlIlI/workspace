@@ -2,6 +2,8 @@
 #include<malloc.h>
 #include<stdlib.h>
 #include <string.h>
+#include <queue>
+using namespace std;
 //haffman 树的结构
 
 typedef struct
