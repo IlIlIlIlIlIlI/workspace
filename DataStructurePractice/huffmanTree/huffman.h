@@ -1,9 +1,7 @@
-#include<stdio.h>
-#include<malloc.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
-#include <queue>
-using namespace std;
 //haffman 树的结构
 
 typedef struct
@@ -24,3 +22,4 @@ void createHuffmanTree(HuffmanTree *huffmanTree, float w[], int n);
 void creatHuffmanCode(HuffmanTree *huffmanTree, HuffmanCode *huffmanCode, int n);
 void dataToHuffmanCode(char Huffman[], int data[]);
 void HuffmanCodeTodata(char Huffman, int &data);
+void fileTOhuffmanCode();

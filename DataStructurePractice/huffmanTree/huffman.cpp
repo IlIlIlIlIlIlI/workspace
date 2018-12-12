@@ -5,7 +5,6 @@ HuffmanTree HT;
 HuffmanCode HC;
 int i, n, num;
 float *w, wei;
-int ans[1024] = {0};
 
 //选择两个parent�?0，且weight最小的结点s1和s2的方法实�?
 //n 为叶子结点的总数，s1�? s2两个指针参数指向要选取出来的两�?权值最小的结点
@@ -174,6 +173,7 @@ int i, n;
 float *w, wei;*/
 void dataToHuffmanCode(char Huffman[], int data[])
 {
+	/*
 	printf("\n 需要创建的文件有�?�少�?码元 = ");
 	scanf("%d", &n);
 	w = (float *)malloc((n + 1) * sizeof(float));
@@ -238,17 +238,15 @@ void dataToHuffmanCode(char Huffman[], int data[])
 			}
 		}
 	}
+	*/
 }
 
-void HuffmanCodeTodata(char Huffman, int &data)
+void fileTOhuffmanCode()
 {
 	printf("请输入需要读取的文件名：");
 	char fileName[20];
 	int i = 0;
-	while (~scanf("%c", &fileName[i]))
-	{
-		i++;
-	}
+	scanf("%s", fileName);
 
 	FILE *fp = fopen(fileName, "r");
 	if (!fp)
@@ -256,49 +254,19 @@ void HuffmanCodeTodata(char Huffman, int &data)
 		return;
 	}
 
-	char ch = getc(fp);
-	stack<char> num;
-	stack<stack<char>> nums while (ch != EOF)
+	float nums[10] = {0};
+	int sum = 0;
+	while(!feof(fp))
 	{
-		if (ch != ' ' && ch != EOF)
-		{
-			num.push(ch);
-		}
-		else
-		{
-			nums.push(num);
-			num = stack<char>();
-		}
-		ch = getc(fp);
+		char ch = getc(fp);
+		nums[ch-'0']++;
+		sum++;
 	}
 	fclose(fp);
 
-	i = 0;
-	int sum = 0;
-	while (!nums.empty())
-	{
-		int tmp = 0, ten = 1;
-		while (!nums[i].empty)
-		{
-			tmp += ((nums[i].top() - '0') * ten);
-			ten *= 10;
-			nums[i].pop();
-		}
-		ans[tmp]++;
-		sum++;
-	} //全局变量 int ans[1024];
-	//sum为数字的总数
-	
-	int n = 0;
-	for(i = 0; i < 1024; i++)
-	{
-		if(ans[i])
-		{
-			n++;
-		}
-	}
+	int n = 10;
 
-	//*****************************************
+	//*************************************************************************************************************
 	//m 为哈�?曼树总共的结点数，n 为叶子结点数
 	int m = 2 * n - 1;
 	//s1 �? s2 为两�?当前结点里，要选取的最小权值的结点
@@ -308,17 +276,15 @@ void HuffmanCodeTodata(char Huffman, int &data)
 	// 创建哈夫曼树的结点所需的空间，m+1，代表其�?包含一�?头结�?
 	HuffmanTree *huffmanTree = (HuffmanTree)malloc((m + 1) * sizeof(Node));
 	//1--n号存放叶子结点，初�?�化叶子结点，结构数组来初�?�化每个叶子结点，初始的时候看做一�?�?单个结点的二叉树
-	for (i = 1; i < 1024; i++)
-	{
-		if(ans[i])
-		{				
-			//其中叶子结点的权值是 w【n】数组来保存
-			(*huffmanTree)[i].weight = w[i];
-			//初�?�化叶子结点（单�?结点二叉树）的�?�子和双亲，单个结点，也就是没有孩子和双亲，==0
-			(*huffmanTree)[i].lChild = 0;
-			(*huffmanTree)[i].parent = 0;
-			(*huffmanTree)[i].rChild = 0;
-		}
+	for (i = 1; i <= n; i++)
+	{	
+		//其中叶子结点的权值是 w【n】数组来保存
+		(*huffmanTree)[i].weight = nums[i]/sum;
+		//初�?�化叶子结点（单�?结点二叉树）的�?�子和双亲，单个结点，也就是没有孩子和双亲，==0
+		(*huffmanTree)[i].lChild = 0;
+		(*huffmanTree)[i].parent = 0;
+		(*huffmanTree)[i].rChild = 0;
+	
 	} // end of for
 	//非叶子结点的初�?�化
 	for (i = n + 1; i <= m; i++)
@@ -344,14 +310,63 @@ void HuffmanCodeTodata(char Huffman, int &data)
 
 		//printf("%f (%f, %f)\n", (*huffmanTree)[i].weight, (*huffmanTree)[s1].weight, (*huffmanTree)[s2].weight);
 	}
-	//****************************************************
+	//**********************************************************************************************************************
 
-	for (i = 0; i < 1024; i++)
+	//**********************************************************************************************************************
+	//指示biaoji
+
+	//编码的起始指�?
+	int start;
+	//指向当前结点的父节点
+	int p;
+	//遍历 n �?叶子结点的指示标�? c
+	unsigned int c;
+	//分配n�?编码的头指针
+	HuffmanCode *huffmanCode = (HuffmanCode *)malloc((n + 1) * sizeof(char *));
+	//分配求当前编码的工作空间
+	char *cd = (char *)malloc(n * sizeof(char));
+	//从右向左逐位存放编码，�?�先存放编码结束�?
+	cd[n - 1] = '\0';
+	//求n�?叶子结点对应的哈�?曼编�?
+	for (i = 1; i <= n; i++)
 	{
-		if (ans[i])
+		//初�?�化编码起�?�指�?
+		start = n - 1;
+		//从叶子到根结点求编码
+		for (c = i, p = (*huffmanTree)[i].parent; p != 0; c = p, p = (*huffmanTree)[p].parent)
 		{
-		}
+			if ((*huffmanTree)[p].lChild == c)
+			{
+				//从右到左的顺序编码入数组�?
+				cd[--start] = '0'; //左分�?�?0
+			}
+			else
+			{
+				cd[--start] = '1'; //右分�?�?1
+			}
+		} // end of for
+		//为�?�i�?编码分配空间
+		huffmanCode[i] = (char *)malloc((n - start) * sizeof(char));
+
+		strcpy(huffmanCode[i], &cd[start]);
 	}
+
+	free(cd);
+
+	//打印编码序列
+	fp = fopen(fileName, "r");
+	if (!fp)
+	{
+		return;
+	}
+
+	ch = getc(fp);
+	while(ch != EOF)
+	{
+		printf("HuffmanCodes are %s\n", huffmanCode[ch-'0']);
+		ch = getc(fp);
+	}
+	fclose(fp);
 }
 
 int main()
@@ -406,8 +421,7 @@ int main()
 		}
 		case 3:
 		{
-			printf("\n输入的哈�?曼编码为�?");
-
+			fileTOhuffmanCode();
 			break;
 		}
 		case 4:
